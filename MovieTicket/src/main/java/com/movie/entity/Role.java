@@ -7,13 +7,17 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.NaturalId;
 
 import com.movie.common.Constants;
 
 @Entity
-
+@Table(name = "APP_USER_ROLES", uniqueConstraints = {
+        
+})
 public class Role {
 	  @Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)

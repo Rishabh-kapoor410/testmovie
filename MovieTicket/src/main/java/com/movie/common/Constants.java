@@ -43,4 +43,30 @@ public final class Constants {
 	        return "ROLE_" + this.name();
 	    }
 	}
+	  public enum SeatStatus { 
+		    SEAT_BOOKED, 
+		    SEAT_NOT_BOOKED; 
+		} 
+		  
+		public enum MovieStatus { 
+		    Movie_Available, 
+		    Movie_NotAvailable; 
+		} 
+		  
+		public enum MovieType { 
+		    ENGLISH, 
+		    HINDI; 
+		} 
+		  
+		public enum SeatType { 
+		    NORMAL, 
+		    EXECUTIVE, 
+		    PREMIUM, 
+		    VIP; 
+		} 
+		  
+		public enum PaymentStatus { 
+		    PAID, 
+		    UNPAID; 
+		}
 }

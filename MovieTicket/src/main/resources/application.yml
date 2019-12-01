@@ -7,7 +7,7 @@ demo.security.jwt:
   tokenIssuer: rishabhfdsasfdasdfs
   tokenSigningKey: xm8EV6Hy5RMFK4EEACIDAwQus
   
-  
+spring.devtools.restart.exclude: static/**,public/**
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
