@@ -6,31 +6,24 @@ demo.security.jwt:
   refreshTokenExpTime: 60
   tokenIssuer: rishabhfdsasfdasdfs
   tokenSigningKey: xm8EV6Hy5RMFK4EEACIDAwQus
+  
+  
 spring:
   datasource:
-    driverClassName: com.mysql.jdbc.Driver
+    driverClassName: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/test
     username: root
     password: Rishabh410
-    #url:      jdbc:mysql://${${mysql.service.name}.service.host}:${mysql.service.port}/${mysql.service.database}
-    #username: ${mysql.service.username}
-    #password: ${mysql.service.password}
   jpa:
     show-sql: true
     generate-ddl: true
     hibernate.hbm2ddl.auto: create-update
-    #show-sql: false
-
-      
 logging:
-  #file: logs/application-debug.log
-  file: d:\logs\application-debug.log 
+  file: d:\logs\application-debug.log
   pattern:
-    console: "%d %-5level %logger : %msg%n"
-    file: "%d %-5level [%thread] %logger : %msg%n"
+    console: '%d %-5level %logger : %msg%n'
+    file: '%d %-5level [%thread] %logger : %msg%n'
   level:
     org.springframework.web: ERROR
     com.howtodoinjava: DEBUG
     org.hibernate: ERROR
-    
-    

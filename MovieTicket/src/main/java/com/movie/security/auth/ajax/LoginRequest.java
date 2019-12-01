@@ -1,5 +1,7 @@
 package com.movie.security.auth.ajax;
 
+import org.springframework.security.core.userdetails.UserDetails;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -10,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  *
  */
 
-public class LoginRequest {
+public class LoginRequest  {
     private String username;
     private String password;
 

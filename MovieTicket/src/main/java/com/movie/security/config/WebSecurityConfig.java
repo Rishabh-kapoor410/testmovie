@@ -3,24 +3,36 @@ package com.movie.security.config;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.movie.CustomCorsFilter;
+import com.movie.entity.vo.JwtAuthenticationResponse;
+import com.movie.security.JwtTokenProvider;
 import com.movie.security.RestAuthenticationEntryPoint;
 import com.movie.security.auth.ajax.AjaxAuthenticationProvider;
 import com.movie.security.auth.ajax.AjaxLoginProcessingFilter;
+import com.movie.security.auth.ajax.LoginRequest;
 import com.movie.security.auth.jwt.JwtAuthenticationProvider;
 import com.movie.security.auth.jwt.JwtTokenAuthenticationProcessingFilter;
 import com.movie.security.auth.jwt.SkipPathRequestMatcher;
@@ -34,7 +46,12 @@ import com.movie.security.auth.jwt.extractor.TokenExtractor;
  */
 @Configuration
 @EnableWebSecurity
+@Component
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+	
+    @Autowired
+    JwtTokenProvider tokenProvider;
+    
     public static final String AUTHENTICATION_HEADER_NAME = "Authorization";
     public static final String AUTHENTICATION_URL = "/api/auth/login";
     public static final String REFRESH_TOKEN_URL = "/api/auth/token";
@@ -96,16 +113,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
             .and()
-                .authorizeRequests()
-                .antMatchers(permitAllEndpointList.toArray(new String[permitAllEndpointList.size()]))
+                .authorizeRequests().
+                antMatchers(AUTHENTICATION_URL)
+               // .antMatchers(permitAllEndpointList.toArray(new String[permitAllEndpointList.size()]))
                 .permitAll()
             .and()
                 .authorizeRequests()
-                .antMatchers(API_ROOT_URL).authenticated() // Protected API End-points
+                .antMatchers(API_ROOT_URL).authenticated()
+                // Protected API End-points
+               
+                    
             .and()
                 .addFilterBefore(new CustomCorsFilter(), UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(buildAjaxLoginProcessingFilter(AUTHENTICATION_URL), UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(buildJwtTokenAuthenticationProcessingFilter(permitAllEndpointList,
                 API_ROOT_URL), UsernamePasswordAuthenticationFilter.class);
     }
+    
+ 
+
 }

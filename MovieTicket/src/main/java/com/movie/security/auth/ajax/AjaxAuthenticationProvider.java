@@ -19,6 +19,7 @@ import org.springframework.util.Assert;
 
 import com.movie.entity.User;
 import com.movie.security.model.UserContext;
+import com.movie.service.IUserService;
 import com.movie.user.service.DatabaseUserService;
 
 /**
@@ -28,10 +29,10 @@ import com.movie.user.service.DatabaseUserService;
 @Component
 public class AjaxAuthenticationProvider implements AuthenticationProvider {
     private final BCryptPasswordEncoder encoder;
-    private final DatabaseUserService userService;
+    private final IUserService userService;
 
     @Autowired
-    public AjaxAuthenticationProvider(final DatabaseUserService userService, final BCryptPasswordEncoder encoder) {
+    public AjaxAuthenticationProvider(final IUserService userService, final BCryptPasswordEncoder encoder) {
         this.userService = userService;
         this.encoder = encoder;
     }
@@ -55,7 +56,7 @@ public class AjaxAuthenticationProvider implements AuthenticationProvider {
                 .map(authority -> new SimpleGrantedAuthority(authority.getName().authority()))
                 .collect(Collectors.toList());
         
-        UserContext userContext = UserContext.create(user.getUsername(), authorities);
+        UserContext userContext = UserContext.create(user.getUsername(), authorities, user.getRoles().stream().findFirst().get().getId());
         
         return new UsernamePasswordAuthenticationToken(userContext, null, userContext.getAuthorities());
     }

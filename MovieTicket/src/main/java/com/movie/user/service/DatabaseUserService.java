@@ -18,7 +18,7 @@ import com.movie.user.repository.UserRepository;
  */
 @Service
 @Qualifier("userService3")
-public class DatabaseUserService implements IUserService {
+public class DatabaseUserService  {
     private final UserRepository userRepository;
     
     @Autowired
@@ -30,14 +30,6 @@ public class DatabaseUserService implements IUserService {
         return userRepository;
     }
 
-    @Override
-    public Optional<User> getByUsername(String username) {
-        return this.userRepository.findByUsername(username);
-    }
-
-	@Override
-	public UserVO save(UserVO userVO) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+   
+	
 }

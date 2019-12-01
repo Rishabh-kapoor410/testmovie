@@ -12,8 +12,18 @@ public class JwtSettings {
      * {@link JwtToken} will expire after this time.
      */
     private Integer tokenExpirationTime;
+    
+    
+    private Long roleId;
+    public Long getRoleId() {
+		return roleId;
+	}
 
-    /**
+	public void setRoleId(Long roleId) {
+		this.roleId = roleId;
+	}
+
+	/**
      * Token issuer.
      */
     private String tokenIssuer;

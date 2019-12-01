@@ -1,3 +1,7 @@
+
+
+
+
 package com.movie;
 
 import org.springframework.boot.SpringApplication;
@@ -16,12 +20,12 @@ import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
  */
 @SpringBootApplication
 @EntityScan(basePackageClasses = {
-		SpringbootSecurityJwtApplication.class,
+		MovieBookingApp.class,
         Jsr310JpaConverters.class
 })
 @ComponentScan("com.movie")
-public class SpringbootSecurityJwtApplication extends SpringBootServletInitializer {
+public class MovieBookingApp extends SpringBootServletInitializer {
 	public static void main(String[] args) {
-		SpringApplication.run(SpringbootSecurityJwtApplication.class, args);
+		SpringApplication.run(MovieBookingApp.class, args);
 	}
 }
