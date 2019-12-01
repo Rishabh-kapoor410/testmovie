@@ -11,7 +11,7 @@ spring.devtools.restart.exclude: static/**,public/**
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/test
+    url: jdbc:mysql://localhost:3306/test?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC
     username: root
     password: Rishabh410
   jpa:
