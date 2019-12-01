@@ -94,11 +94,11 @@
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-devtools -->
-		<!-- <dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
-			<version>1.3.0.RELEASE</version>
-		</dependency> -->
+			<optional>true</optional>
+		</dependency>
 
 
 		<dependency>

@@ -8,6 +8,8 @@ demo.security.jwt:
   tokenSigningKey: xm8EV6Hy5RMFK4EEACIDAwQus
   
 spring.devtools.restart.exclude: static/**,public/**
+#management.endpoints.web.exposure.include: *
+
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver

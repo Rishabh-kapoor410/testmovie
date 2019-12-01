@@ -45,12 +45,9 @@ public class UserController {
 	static Logger logger = Logger.getLogger(UserController.class);
 	static Marker confidentialMarker = MarkerFactory.getMarker("UserController");
 
-
 	@Autowired
 	IUserService userService;
 
-
-	
 	@PostMapping()
 	@RequestMapping("/signUp")
 	public Response<?> postUser(JwtAuthenticationToken token, @RequestBody UserVO userVO) {

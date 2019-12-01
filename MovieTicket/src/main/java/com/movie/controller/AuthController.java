@@ -65,8 +65,7 @@ public class AuthController {
 			if (authentication.isAuthenticated()) {
 				SecurityContextHolder.getContext().setAuthentication(authentication);
 				String jwt = tokenProvider.generateToken(authentication);
-				return ResponseEntity.ok(
-						new Response<>((new JwtAuthenticationResponse(jwt)).getAccessToken(), Collections.EMPTY_LIST));
+				return ResponseEntity.ok(new JwtAuthenticationResponse(jwt));
 			}
 		} catch (AuthenticationException e) {
 

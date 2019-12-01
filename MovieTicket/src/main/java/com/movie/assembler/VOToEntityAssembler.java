@@ -4,7 +4,9 @@ import java.util.Optional;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.movie.entity.Movie;
 import com.movie.entity.User;
+import com.movie.entity.vo.MovieVO;
 import com.movie.entity.vo.UserVO;
 
 public final class VOToEntityAssembler {
@@ -17,6 +19,14 @@ public final class VOToEntityAssembler {
 		Optional.ofNullable(userVO.getPassword()).ifPresent(x -> user.setPassword(bcrypt.encode(x)));
 		Optional.ofNullable(userVO.getEmail()).ifPresent(x -> user.setEmails(x));
 		return user;
+	}
+
+	public static Movie fillMovie(MovieVO movieVO, Movie movie) {
+		Optional.ofNullable(movieVO.getId()).ifPresent(x -> movie.setMovieId(x));
+		Optional.ofNullable(movieVO.getMovieStatus()).ifPresent(x -> movie.setMovieStatus(x));
+		Optional.ofNullable(movieVO.getMovieType()).ifPresent(x -> movie.setMovieType(x));
+		Optional.ofNullable(movieVO.getTheaterId()).ifPresent(x -> movie.setTheaterId(x));
+		return movie;
 	}
 	
 }
