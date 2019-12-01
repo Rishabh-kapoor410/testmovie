@@ -15,9 +15,6 @@ import org.hibernate.annotations.NaturalId;
 import com.movie.common.Constants;
 
 @Entity
-@Table(name = "APP_USER_ROLES", uniqueConstraints = {
-        
-})
 public class Role {
 	  @Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
